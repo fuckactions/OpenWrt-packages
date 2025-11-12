@@ -1,13 +1,13 @@
 # OpenWrt-packages
 🤖 Lede和OpenWrt 常用插件库
-[OpenWrt-packages](https://github.com/somemoo/OpenWrt-packages)
+[OpenWrt-packages](https://github.com/fuckactions/OpenWrt-packages)
 
-[![Merge-upstream](https://github.com/somemoo/OpenWrt-packages/actions/workflows/Merge-upstream.yml/badge.svg)](https://github.com/somemoo/OpenWrt-packages/actions/workflows/Merge-upstream.yml)
+[![Merge-upstream](https://github.com/fuckactions/OpenWrt-packages/actions/workflows/Merge-upstream.yml/badge.svg)](https://github.com/fuckactions/OpenWrt-packages/actions/workflows/Merge-upstream.yml)
 
 ## 使用
 Openwrt:
 ```
-sed -i '$a src-git custou-packages https://github.com/somemoo/OpenWrt-packages;openwrt' feeds.conf.default
+sed -i '$a src-git custou-packages https://github.com/fuckactions/OpenWrt-packages;openwrt' feeds.conf.default
 ./scripts/feeds clean
 ./scripts/feeds update -a
 ./scripts/feeds install -a
@@ -15,7 +15,7 @@ make menuconfig
 ```
 Lede:
 ```
-sed -i '$a src-git custou-packages https://github.com/somemoo/OpenWrt-packages;lede' feeds.conf.default
+sed -i '$a src-git custou-packages https://github.com/fuckactions/OpenWrt-packages;lede' feeds.conf.default
 ./scripts/feeds clean
 ./scripts/feeds update -a
 ./scripts/feeds install -a
