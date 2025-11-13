@@ -90,18 +90,18 @@ jobs:
             rm -rf $1  
           }  
          
-          git_clone https://github.com/tty228/luci-app-wechatpush luci-app-wechatpush  
-          git_clone https://github.com/KFERMercer/luci-app-tcpdump luci-app-tcpdump  
-          git_sparse_clone main "https://github.com/destan19/OpenAppFilter" luci-app-oaf open-app-filter oaf 
+          git_clone https://github.com/tty228/luci-app-wechatpush wechatpush && mkdir luci-app-wechatpush && mv -n `find wechatpush/* -maxdepth 0` ./luci-app-wechatpush; rm -rf wechatpush  
+          git_clone https://github.com/KFERMercer/luci-app-tcpdump tcpdump && mkdir luci-app-tcpdump && mv -n `find tcpdump/* -maxdepth 0` ./luci-app-tcpdump; rm -rf tcpdump   
+          git_sparse_clone master "https://github.com/destan19/OpenAppFilter" luci-app-oaf open-app-filter oaf 
           
-          git_clone https://github.com/jerrykuku/luci-theme-argon luci-theme-argon  
-          git_clone https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config  
+          git_clone https://github.com/jerrykuku/luci-theme-argon theme-argon && mkdir luci-theme-argon && mv -n `find theme-argon/* -maxdepth 0` ./luci-theme-argon; rm -rf theme-argon   
+          git_clone https://github.com/jerrykuku/luci-app-argon-config argon-config && mkdir luci-app-argon-config && mv -n `find argon-config/* -maxdepth 0` ./luci-app-argon-config; rm -rf argon-config 
           
-          git_clone https://github.com/sirpdboy/luci-app-eqosplus luci-app-eqosplus
-          git_clone https://github.com/sirpdboy/luci-theme-kucat luci-theme-kucat  
-          git_clone https://github.com/sirpdboy/luci-app-kucat-config luci-app-kucat-config  
-          git_clone https://github.com/sirpdboy/luci-app-parentcontrol luci-app-parentcontrol  
-          git_sparse_clone main "https://github.com/sirpdboy/luci-app-netspeedtest" luci-app-netspeedtest homebox netspeedtest speedtest-cli iperf-3.1.3-win64.zip  
+          git_clone https://github.com/sirpdboy/luci-app-eqosplus eqosplus && mkdir luci-app-eqosplus && mv -n `find eqosplus/* -maxdepth 0` ./luci-app-eqosplus; rm -rf eqosplus  
+          git_clone https://github.com/sirpdboy/luci-theme-kucat theme-kucat && mkdir luci-theme-kucat && mv -n `find theme-kucat/* -maxdepth 0` ./luci-theme-kucat; rm -rf theme-kucat  
+          git_clone https://github.com/sirpdboy/luci-app-kucat-config kucat-config && mkdir luci-app-kucat-config && mv -n `find kucat-config/* -maxdepth 0` ./luci-app-kucat-config; rm -rf kucat-config  
+          git_clone https://github.com/sirpdboy/luci-app-parentcontrol parentcontrol && mkdir luci-app-parentcontrol && mv -n `find parentcontrol/* -maxdepth 0` ./luci-app-parentcontrol; rm -rf parentcontrol  
+          git_sparse_clone master "https://github.com/sirpdboy/luci-app-netspeedtest" luci-app-netspeedtest homebox netspeedtest speedtest-cli  
           git_sparse_clone main "https://github.com/sirpdboy/luci-app-netwizard" luci-app-netwizard  
           git_sparse_clone main "https://github.com/sirpdboy/luci-app-timecontrol" luci-app-nft-timecontrol  
           
@@ -117,11 +117,9 @@ jobs:
           # 更新 lede 分支  
           if [ "${{ matrix.branch }}" == "lede" ]; then  
             echo '暂无' 
-
           # 更新 openwrt 分支  
           elif [ "${{ matrix.branch }}" == "openwrt" ]; then  
             git_sparse_clone master "https://github.com/coolsnowwolf/lede" package/lean/default-settings  
-
           # 更新 immortalwrt 分支  
           elif [ "${{ matrix.branch }}" == "immortalwrt" ]; then  
             echo '暂无' 
