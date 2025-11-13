@@ -4,10 +4,9 @@ on:
   push:  
     branches:  
       - lede  
-      - openwrt  
-      - immortalwrt    
+      - test  
   schedule:  
-    - cron: '0 */6 * * *'  # 每6小时执行一次  
+    - cron: '0 */20 * * *'  # 每6小时执行一次  
   workflow_dispatch: 
     inputs:
       ssh:
@@ -23,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest  
     strategy:  
       matrix:  
-        branch: [lede, openwrt, immortalwrt]  
+        branch: [lede, test]  
 
     steps:  
       - name: Checkout  
@@ -90,39 +89,36 @@ jobs:
             rm -rf $1  
           }  
          
-          git_clone https://github.com/tty228/luci-app-wechatpush wechatpush && mkdir luci-app-wechatpush && mv -n `find wechatpush/* -maxdepth 0` ./luci-app-wechatpush; rm -rf wechatpush  
-          git_clone https://github.com/KFERMercer/luci-app-tcpdump tcpdump && mkdir luci-app-tcpdump && mv -n `find tcpdump/* -maxdepth 0` ./luci-app-tcpdump; rm -rf tcpdump   
-          git_sparse_clone master "https://github.com/destan19/OpenAppFilter" luci-app-oaf open-app-filter oaf 
-          
-          git_clone https://github.com/jerrykuku/luci-theme-argon theme-argon && mkdir luci-theme-argon && mv -n `find theme-argon/* -maxdepth 0` ./luci-theme-argon; rm -rf theme-argon   
-          git_clone https://github.com/jerrykuku/luci-app-argon-config argon-config && mkdir luci-app-argon-config && mv -n `find argon-config/* -maxdepth 0` ./luci-app-argon-config; rm -rf argon-config 
-          
-          git_clone https://github.com/sirpdboy/luci-app-eqosplus eqosplus && mkdir luci-app-eqosplus && mv -n `find eqosplus/* -maxdepth 0` ./luci-app-eqosplus; rm -rf eqosplus  
-          git_clone https://github.com/sirpdboy/luci-theme-kucat theme-kucat && mkdir luci-theme-kucat && mv -n `find theme-kucat/* -maxdepth 0` ./luci-theme-kucat; rm -rf theme-kucat  
-          git_clone https://github.com/sirpdboy/luci-app-kucat-config kucat-config && mkdir luci-app-kucat-config && mv -n `find kucat-config/* -maxdepth 0` ./luci-app-kucat-config; rm -rf kucat-config  
-          git_clone https://github.com/sirpdboy/luci-app-parentcontrol parentcontrol && mkdir luci-app-parentcontrol && mv -n `find parentcontrol/* -maxdepth 0` ./luci-app-parentcontrol; rm -rf parentcontrol  
-          git_sparse_clone master "https://github.com/sirpdboy/luci-app-netspeedtest" luci-app-netspeedtest homebox netspeedtest speedtest-cli  
-          git_sparse_clone main "https://github.com/sirpdboy/luci-app-netwizard" luci-app-netwizard  
-          git_sparse_clone main "https://github.com/sirpdboy/luci-app-timecontrol" luci-app-nft-timecontrol  
-          
-          git_clone https://github.com/xiaorouji/openwrt-passwall passwall && mv -n passwall/luci-app-passwall ./; rm -rf passwall  
-          git_clone https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./; rm -rf passwall2  
-          git_clone https://github.com/xiaorouji/openwrt-passwall-packages passwaii && rm -rf passwaii/{geoview,.github} && mvdir passwaii  
-          git_clone https://github.com/kenzok8/small && rm -rf small/{luci-app-passwall,luci-app-passwall2} && mvdir small  
-          git_clone https://github.com/sbwml/packages_lang_golang.git lang && mkdir golang && mv -n `find lang/* -maxdepth 0` ./golang; rm -rf lang  
-          git_clone https://github.com/pymumu/openwrt-smartdns && mkdir smartdns && mv -n `find openwrt-smartdns/* -maxdepth 0` ./smartdns; rm -rf openwrt-smartdns  
-          git_clone https://github.com/pymumu/luci-app-smartdns smart && mkdir luci-app-smartdns && mv -n `find smart/* -maxdepth 0` ./luci-app-smartdns; rm -rf smart  
-          
-          git_sparse_clone main "https://github.com/gdy666/luci-app-lucky" luci-app-lucky lucky  
           # 更新 lede 分支  
           if [ "${{ matrix.branch }}" == "lede" ]; then  
             echo '暂无' 
+            git_clone https://github.com/tty228/luci-app-wechatpush wechatpush && mkdir luci-app-wechatpush && mv -n `find wechatpush/* -maxdepth 0` ./luci-app-wechatpush; rm -rf wechatpush  
+            git_clone https://github.com/KFERMercer/luci-app-tcpdump tcpdump && mkdir luci-app-tcpdump && mv -n `find tcpdump/* -maxdepth 0` ./luci-app-tcpdump; rm -rf tcpdump   
+            git_sparse_clone master "https://github.com/destan19/OpenAppFilter" luci-app-oaf open-app-filter oaf 
+          
+            git_clone https://github.com/jerrykuku/luci-theme-argon theme-argon && mkdir luci-theme-argon && mv -n `find theme-argon/* -maxdepth 0` ./luci-theme-argon; rm -rf theme-argon   
+            git_clone https://github.com/jerrykuku/luci-app-argon-config argon-config && mkdir luci-app-argon-config && mv -n `find argon-config/* -maxdepth 0` ./luci-app-argon-config; rm -rf argon-config 
+          
+            git_clone https://github.com/sirpdboy/luci-app-eqosplus eqosplus && mkdir luci-app-eqosplus && mv -n `find eqosplus/* -maxdepth 0` ./luci-app-eqosplus; rm -rf eqosplus  
+            git_clone https://github.com/sirpdboy/luci-theme-kucat theme-kucat && mkdir luci-theme-kucat && mv -n `find theme-kucat/* -maxdepth 0` ./luci-theme-kucat; rm -rf theme-kucat  
+            git_clone https://github.com/sirpdboy/luci-app-kucat-config kucat-config && mkdir luci-app-kucat-config && mv -n `find kucat-config/* -maxdepth 0` ./luci-app-kucat-config; rm -rf kucat-config  
+            git_clone https://github.com/sirpdboy/luci-app-parentcontrol parentcontrol && mkdir luci-app-parentcontrol && mv -n `find parentcontrol/* -maxdepth 0` ./luci-app-parentcontrol; rm -rf parentcontrol  
+            git_sparse_clone master "https://github.com/sirpdboy/luci-app-netspeedtest" luci-app-netspeedtest homebox netspeedtest speedtest-cli  
+            git_sparse_clone main "https://github.com/sirpdboy/luci-app-netwizard" luci-app-netwizard  
+            git_sparse_clone main "https://github.com/sirpdboy/luci-app-timecontrol" luci-app-nft-timecontrol  
+          
+            git_clone https://github.com/xiaorouji/openwrt-passwall passwall && mv -n passwall/luci-app-passwall ./; rm -rf passwall  
+            git_clone https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./; rm -rf passwall2  
+            git_clone https://github.com/xiaorouji/openwrt-passwall-packages passwaii && rm -rf passwaii/{geoview,.github} && mvdir passwaii  
+            git_clone https://github.com/kenzok8/small && rm -rf small/{luci-app-passwall,luci-app-passwall2} && mvdir small  
+            git_clone https://github.com/sbwml/packages_lang_golang.git lang && mkdir golang && mv -n `find lang/* -maxdepth 0` ./golang; rm -rf lang  
+            git_clone https://github.com/pymumu/openwrt-smartdns && mkdir smartdns && mv -n `find openwrt-smartdns/* -maxdepth 0` ./smartdns; rm -rf openwrt-smartdns  
+            git_clone https://github.com/pymumu/luci-app-smartdns smart && mkdir luci-app-smartdns && mv -n `find smart/* -maxdepth 0` ./luci-app-smartdns; rm -rf smart  
+            git_sparse_clone main "https://github.com/Lienol/openwrt-package" luci-app-socat luci-app-control-weburl luci-app-control-webrestriction
+            git_sparse_clone main "https://github.com/gdy666/luci-app-lucky" luci-app-lucky lucky  
           # 更新 openwrt 分支  
-          elif [ "${{ matrix.branch }}" == "openwrt" ]; then  
+          elif [ "${{ matrix.branch }}" == "test" ]; then  
             git_sparse_clone master "https://github.com/coolsnowwolf/lede" package/lean/default-settings  
-          # 更新 immortalwrt 分支  
-          elif [ "${{ matrix.branch }}" == "immortalwrt" ]; then  
-            echo '暂无' 
           fi  
           
       - name: Language Management  
