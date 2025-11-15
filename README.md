@@ -14,14 +14,7 @@ sed -i '$a src-git custou-packages https://github.com/fuckactions/OpenWrt-packag
 make menuconfig
 ```
 
-# 在此 鸣谢各位插件作者 
-
-
-### default-settings
-https://github.com/coolsnowwolf/lede/tree/master/package/lean/default-settings
-
-
-## 鸣谢
+## 在此 鸣谢各位插件作者
 - [sirpdboy's openwrt](https://github.com/sirpdboy)
 - [xiaorouji's openwrt](https://github.com/xiaorouji)
 - [fw876's helloworld](https://github.com/fw876/helloworld)
