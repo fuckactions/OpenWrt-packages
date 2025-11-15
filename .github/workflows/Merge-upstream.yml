@@ -118,7 +118,7 @@ jobs:
             git_sparse_clone main "https://github.com/gdy666/luci-app-lucky" luci-app-lucky lucky  
           # 更新 openwrt 分支  
           elif [ "${{ matrix.branch }}" == "test" ]; then  
-            git_sparse_clone master "https://github.com/coolsnowwolf/lede" package/lean/default-settings  
+            echo "暂无"  # 如有需要，删除本行，把需要测试的代码链接放这里！  
           fi  
           
       - name: Language Management  
