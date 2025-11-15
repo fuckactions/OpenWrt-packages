@@ -9,9 +9,3 @@
 ```
 本仓库的代码都是测试代码，请勿随便使用！！
 ```
-
-# 在此 鸣谢作者lean 
-
-
-### default-settings
-https://github.com/coolsnowwolf/lede/tree/master/package/lean/default-settings
