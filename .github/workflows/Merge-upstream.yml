@@ -6,7 +6,7 @@ on:
       - lede  
       - test  
   schedule:  
-    - cron: '0 */20 * * *'  # 每6小时执行一次  
+    - cron: '0 19 * * *'  
   workflow_dispatch: 
     inputs:
       ssh:
